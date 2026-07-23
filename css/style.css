@@ -1,0 +1,410 @@
+
+:root {
+  --fondo: #0b0b0d;
+  --fondo-tarjeta: #19191c;
+  --fondo-tarjeta-hover: #212124;
+  --borde-sutil: rgba(255, 255, 255, 0.09);
+  --texto: #e9e7e3;
+  --texto-tenue: #a3a19d;
+  --rojo: #c9483c;
+  --dorado: #d99a44;
+  --rosa: #e0447a;
+  --error: #e0574a;
+  --radio: 10px;
+
+  --degradado-acento: linear-gradient(90deg, var(--rojo), var(--dorado));
+
+  --acento: var(--dorado);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Enlace para saltar la navegación, visible solo al recibir foco
+   (uso estándar de accesibilidad para usuarios de teclado/lector). */
+.saltar-enlace {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--dorado);
+  color: #1a1200;
+  padding: 0.6rem 1rem;
+  z-index: 100;
+  font-weight: 600;
+}
+
+.saltar-enlace:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+/* Foco de teclado siempre visible, en cualquier elemento interactivo. */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--dorado);
+  outline-offset: 2px;
+}
+
+/* Respeta a quien pide menos movimiento en su sistema operativo. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(201, 72, 60, 0.16), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(217, 154, 68, 0.10), transparent 40%);
+  background-attachment: fixed;
+}
+
+.cabecera {
+  background: rgba(12, 12, 14, 0.9);
+  backdrop-filter: blur(6px);
+  color: var(--texto);
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--borde-sutil);
+}
+
+.cabecera__marca {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cabecera__pelota {
+  font-size: 2rem;
+}
+
+.cabecera h1 {
+  margin: 0;
+  font-size: 1.15rem;
+  background: var(--degradado-acento);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cabecera p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--texto-tenue);
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.menu__boton {
+  background: transparent;
+  border: 1px solid var(--borde-sutil);
+  color: var(--texto);
+  padding: 0.5rem 0.8rem;
+  border-radius: var(--radio);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.menu__boton:hover {
+  background: var(--fondo-tarjeta-hover);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.menu__boton.activo {
+  background: var(--degradado-acento);
+  border-color: transparent;
+  color: #140b06;
+  font-weight: 600;
+}
+
+main {
+  max-width: 1000px;
+  margin: 1rem auto;
+  padding: 0 0.75rem;
+}
+
+/* A partir de aquí (tablet/desktop) damos más aire al layout.
+   Mobile-first: las reglas base de arriba ya sirven para celular,
+   estas solo las mejoran en pantallas más anchas. */
+@media (min-width: 700px) {
+  main {
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+  }
+
+  .cabecera {
+    flex-wrap: nowrap;
+  }
+}
+
+.pantalla.oculta {
+  display: none;
+}
+
+.pantalla h2 {
+  border-left: 5px solid var(--acento);
+  padding-left: 0.6rem;
+  color: var(--texto);
+}
+
+.pantalla__ayuda {
+  color: var(--texto-tenue);
+  font-size: 0.9rem;
+}
+
+/* --- Pantalla 1: Sedes --- */
+
+.sedes-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.sede-boton {
+  background: var(--fondo-tarjeta);
+  border: 1px solid var(--borde-sutil);
+  color: var(--texto);
+  border-radius: var(--radio);
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.sede-boton:hover {
+  border-color: var(--dorado);
+}
+
+.sede-boton.activa {
+  background: var(--degradado-acento);
+  border-color: transparent;
+  color: #140b06;
+  font-weight: 600;
+}
+
+.sede-seccion {
+  scroll-margin-top: 140px;
+  border-top: 1px dashed var(--borde-sutil);
+  padding-top: 1rem;
+  margin-top: 1.5rem;
+}
+
+.tarjeta-partido {
+  background: var(--fondo-tarjeta);
+  border: 1px solid var(--borde-sutil);
+  border-radius: var(--radio);
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Pantalla 2: Agenda --- */
+
+.agenda-controles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.agenda-controles button {
+  background: var(--fondo-tarjeta);
+  color: var(--texto);
+  border: 1px solid var(--borde-sutil);
+  border-radius: var(--radio);
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+}
+
+.agenda-controles button:hover:not(:disabled) {
+  border-color: var(--dorado);
+}
+
+.agenda-controles button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.agenda-fecha-actual {
+  font-weight: 600;
+  color: var(--dorado);
+}
+
+.agenda-columnas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+
+.agenda-columna {
+  background: var(--fondo-tarjeta);
+  border: 1px solid var(--borde-sutil);
+  border-radius: var(--radio);
+  padding: 0.8rem;
+}
+
+.esqueleto {
+  height: 1rem;
+  background: linear-gradient(90deg, #232326 25%, #2c2c30 37%, #232326 63%);
+  background-size: 400% 100%;
+  animation: brillo 1.4s ease infinite;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes brillo {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+/* --- Pantalla 3: Timeline --- */
+
+.timeline-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.timeline-centinela {
+  height: 40px;
+}
+
+/* --- Pantalla 4: Dashboard --- */
+
+.dashboard-selector {
+  margin: 1rem 0;
+}
+
+.dashboard-selector select,
+.matriz-selector select {
+  background: var(--fondo-tarjeta);
+  color: var(--texto);
+  border: 1px solid var(--borde-sutil);
+  border-radius: var(--radio);
+  padding: 0.4rem 0.6rem;
+}
+
+.dashboard-contenido {
+  background: var(--fondo-tarjeta);
+  border: 1px solid var(--borde-sutil);
+  border-radius: var(--radio);
+  padding: 1rem;
+  border-top: 4px solid var(--acento);
+}
+
+/* --- Pantalla 5: Matriz --- */
+
+.matriz-selector {
+  margin: 1rem 0;
+}
+
+#matriz-tabla-contenedor {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.matriz-tabla {
+  border-collapse: collapse;
+  width: 100%;
+  background: var(--fondo-tarjeta);
+}
+
+.matriz-tabla th,
+.matriz-tabla td {
+  border: 1px solid var(--borde-sutil);
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--texto);
+}
+
+.matriz-tabla td.diagonal {
+  background: repeating-linear-gradient(45deg, #1f1f22, #1f1f22 4px, #29292c 4px, #29292c 8px);
+  color: var(--texto-tenue);
+}
+
+/* --- Avisos comunes --- */
+
+.aviso-error {
+  color: #ffb3aa;
+  background: rgba(224, 87, 74, 0.12);
+  border: 1px solid var(--error);
+  border-radius: var(--radio);
+  padding: 0.6rem 0.8rem;
+}
+
+.aviso-cache {
+  color: var(--dorado);
+  background: rgba(217, 154, 68, 0.10);
+  border: 1px solid var(--dorado);
+  border-radius: var(--radio);
+  padding: 0.5rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+.aviso-countdown {
+  font-weight: 600;
+  color: var(--error);
+}
+
+/* --- Footer --- */
+
+.pagina-footer {
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--borde-sutil);
+  background: rgba(12, 12, 14, 0.9);
+  color: var(--texto-tenue);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.pagina-footer__contenido p {
+  margin: 0.15rem 0;
+}
+
+.pagina-footer__meta a {
+  color: var(--dorado);
+  text-decoration: none;
+}
+
+.pagina-footer__meta a:hover {
+  text-decoration: underline;
+}
+
+.pagina-footer__volver {
+  color: var(--texto);
+  text-decoration: none;
+  border: 1px solid var(--borde-sutil);
+  border-radius: var(--radio);
+  padding: 0.4rem 0.8rem;
+  white-space: nowrap;
+}
+
+.pagina-footer__volver:hover {
+  border-color: var(--dorado);
+  color: var(--dorado);
+}
