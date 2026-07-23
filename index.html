@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundial 2026 - Laboratorio ISW-521 Categoría B</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <a class="saltar-enlace" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <header class="cabecera">
+        <div class="cabecera__marca">
+            <span class="cabecera__pelota" aria-hidden="true">⚽</span>
+            <div>
+                <h1>Mundial 2026 · Panel Interactivo</h1>
+                <p>Laboratorio 2 — ISW-521 · Categoría B</p>
+            </div>
+        </div>
+        <nav class="menu" id="menu-navegacion" role="tablist" aria-label="Selección de pantalla">
+            <button class="menu__boton" role="tab" aria-selected="true" aria-controls="pantalla-sedes" id="tab-sedes"
+                data-pantalla="sedes">Tour de Sedes</button>
+            <button class="menu__boton" role="tab" aria-selected="false" aria-controls="pantalla-agenda" id="tab-agenda"
+                data-pantalla="agenda">Agenda Simultánea</button>
+            <button class="menu__boton" role="tab" aria-selected="false" aria-controls="pantalla-timeline"
+                id="tab-timeline" data-pantalla="timeline">Timeline Infinito</button>
+            <button class="menu__boton" role="tab" aria-selected="false" aria-controls="pantalla-dashboard"
+                id="tab-dashboard" data-pantalla="dashboard">Dashboard Fanático</button>
+            <button class="menu__boton" role="tab" aria-selected="false" aria-controls="pantalla-matriz" id="tab-matriz"
+                data-pantalla="matriz">Matriz de Grupos</button>
+        </nav>
+    </header>
+
+    <main id="contenido-principal">
+        <!--Catalogo 1: Tour Virtual de Sedes -->
+        <section id="pantalla-sedes" role="tabpanel" aria-labelledby="tab-sedes" class="pantalla">
+            <h2>Tour Virtual de Sedes</h2>
+            <p class="pantalla__ayuda">Elige una sede para hacer scroll suave hasta sus partidos.</p>
+            <nav id="sedes-lista" class="sedes-lista" aria-label="Sedes del mundial"></nav>
+            <div id="sedes-partidos-contenedor" aria-live="polite"></div>
+        </section>
+
+        <!--Pantalla 2: Agenda Simultánea -->
+        <section id="pantalla-agenda" role="tabpanel" aria-labelledby="tab-agenda" class="pantalla oculta">
+            <h2>Agenda Simultánea</h2>
+            <div class="agenda-controles">
+                <button id="agenda-anterior">← Fecha anterior</button>
+                <span id="agenda-fecha-actual" class="agenda-fecha-actual" aria-live="polite"></span>
+                <button id="agenda-siguiente">Fecha siguiente →</button>
+            </div>
+            <div id="agenda-columnas" class="agenda-columnas" aria-live="polite"></div>
+        </section>
+
+        <!-- Pantalla 3: Timeline Infinito -->
+        <section id="pantalla-timeline" role="tabpanel" aria-labelledby="tab-timeline" class="pantalla oculta">
+            <h2>Timeline Infinito</h2>
+            <p class="pantalla__ayuda">Haz scroll hacia abajo para cargar más partidos.</p>
+            <div id="timeline-lista" class="timeline-lista" aria-live="polite"></div>
+            <div id="timeline-centinela" class="timeline-centinela" aria-hidden="true"></div>
+        </section>
+
+        <!-- Pantalla 4: Dashboard del Fanático Incondicional -->
+        <section id="pantalla-dashboard" role="tabpanel" aria-labelledby="tab-dashboard" class="pantalla oculta">
+            <h2>Dashboard del Fanático Incondicional</h2>
+            <div class="dashboard-selector">
+                <label for="dashboard-select-equipo">Tu equipo favorito:</label>
+                <select id="dashboard-select-equipo"></select>
+            </div>
+            <div id="dashboard-contenido" class="dashboard-contenido" aria-live="polite"></div>
+        </section>
+
+        <!-- Pantalla 5: Matriz de Enfrentamientos por Grupo -->
+        <section id="pantalla-matriz" role="tabpanel" aria-labelledby="tab-matriz" class="pantalla oculta">
+            <h2>Matriz de Enfrentamientos por Grupo</h2>
+            <div class="matriz-selector">
+                <label for="matriz-select-grupo">Grupo:</label>
+                <select id="matriz-select-grupo"></select>
+            </div>
+            <div id="matriz-tabla-contenedor" aria-live="polite"></div>
+        </section>
+    </main>
+
+    <footer class="pagina-footer">
+        <div class="pagina-footer__contenido">
+            <p>ISW-521 · Programación en Ambiente Web I · UTN</p>
+            <p class="pagina-footer__meta">Laboratorio 2 · Categoría B · Datos vía <a
+                    href="https://worldcup26.ir" target="_blank" rel="noopener noreferrer">worldcup26.ir</a></p>
+        </div>
+        <a class="pagina-footer__volver" href="#contenido-principal">Volver arriba ↑</a>
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
